@@ -15,8 +15,13 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String reverse(String string) {
+		String reverseSt = "";
 		
-		return "";
+		for(int i = string.length(); i > 0; i--) {
+			reverseSt += string.charAt(i);
+		}
+		
+		return reverseSt;
 	}
 
 	/**
