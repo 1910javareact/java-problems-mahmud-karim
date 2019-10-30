@@ -17,7 +17,7 @@ public class EvaluationService {
 	public String reverse(String string) {
 		String reverseSt = "";
 		
-		for(int i = string.length(); i > 0; i--) {
+		for(int i = string.length()-1; i >= 0; i--) {
 			reverseSt += string.charAt(i);
 		}
 		
