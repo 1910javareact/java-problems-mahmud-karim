@@ -207,8 +207,17 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String finalNumber = "";
+		
+		for (char c : string.toCharArray()){
+	        if (Character.isDigit(c) && (Character.getNumericValue(c) != 1)) {
+	        	finalNumber += c;
+	        }
+	    }
+		if(finalNumber.length() != 10)
+			throw new IllegalArgumentException();
+		
+		return finalNumber;
 	}
 
 	/**
