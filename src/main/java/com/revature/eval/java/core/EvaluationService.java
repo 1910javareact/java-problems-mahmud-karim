@@ -151,7 +151,28 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		int total = 0;
+		String lowerWord = string.toLowerCase();
+		
+		for(int i = 0; i < string.length(); i++) {
+			char j = lowerWord.charAt(i);
+			if((j == 'a') || (j == 'e') || (j == 'i') || (j == 'o') || (j == 'u')|| (j == 'l')|| (j == 'n')|| (j == 'r')|| (j == 's')|| (j == 't'))
+				total += 1;
+			if ((j == 'd') || (j == 'g'))
+				total += 2;
+			if ((j == 'b') || (j == 'c') || (j == 'm') || (j == 'p'))
+				total += 3;
+			if ((j == 'f') || (j == 'h') || (j == 'v') || (j == 'w') || (j == 'y'))
+				total += 4;
+			if (j == 'k')
+				total += 5;
+			if ((j == 'j') || (j == 'x'))
+				total += 8;
+			if ((j == 'q') || (j == 'z'))
+				total += 10;
+		}
+		
+		return total;
 	}
 
 	/**
