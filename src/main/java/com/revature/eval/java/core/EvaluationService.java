@@ -384,8 +384,24 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		boolean armstrong = false;
+		String number =  String.valueOf(input);
+		char[] digits = number.toCharArray();
+		int power = digits.length;
+		int total = 0;
+		int remainder = 0;
+		int num = input;
+		
+		while (input !=0) {
+			remainder = input %10;
+			total += Math.pow(remainder, power);
+			input /= 10;
+			
+		}
+		
+		if (num == total)
+			armstrong = true;
+		return armstrong;
 	}
 
 	/**
