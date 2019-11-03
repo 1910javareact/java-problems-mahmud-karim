@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -230,8 +231,24 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		HashMap<String, Integer> outputMap = new HashMap<String, Integer>();
+		string = string.replaceAll(",\n", " ");
+		string = string.replaceAll(",", " ");
+		
+		String[] words = string.split(" ");
+		
+		for(int i = 0; i < words.length; i++) {
+			
+			if (outputMap.containsKey(words[i])) {
+				int value = outputMap.get(words[i]);
+				value++;
+				outputMap.replace(words[i], value);
+			}else {
+				outputMap.put(words[i], 1);
+			}
+		}
+		
+		return outputMap;
 	}
 
 	/**
@@ -310,8 +327,45 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String[] words = string.split(" ");
+		String pigLatin = "";
+		
+		
+		for(int i = 0; i < words.length; i++) {
+			char letter = words[i].charAt(0);
+			if((letter == 'a') || (letter == 'e') || (letter == 'i') || (letter == 'o') || (letter == 'u')) {
+				words[i] += "ay";
+			}else {
+				int start = 0;
+				String temp = "";
+				for(int j = 0; j < words[i].length(); j++) {
+					char letter2 = words[i].charAt(j);
+					if((letter2 == 'a') || (letter2 == 'e') || (letter2 == 'i') || (letter2 == 'o') || (letter2 == 'u')) {
+						j = words[i].length();
+					}else if(letter2 == 'q') {
+						if (words[i].charAt(j+1) == 'u') {
+							temp += "qu";
+							start += 2;
+						}else {
+							temp += letter2;
+							start ++;
+						}
+					}else
+					{
+						temp += letter2;
+						start ++;
+					}
+				}
+				String test = words[i].substring(start);
+				words[i] = test + temp + "ay";
+			}
+			pigLatin += words[i];
+			if ((words.length > 1) && (i != words.length-1)) {
+				pigLatin += " ";
+			}
+		}
+		
+		return pigLatin;
 	}
 
 	/**
