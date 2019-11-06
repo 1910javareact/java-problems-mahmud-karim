@@ -466,8 +466,42 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+			String cipher = "";
+			int num = 0;
+			int key = this.key;
+			
+			for (int i = 0; i < string.length(); i++){
+				String letter = "" + string.charAt(i);
+				boolean isLetter = false;
+				for(int j = 0; j < alphabet.length; j++) {
+					num = j;
+					if (letter.equals(alphabet[j])) {
+						if (j+key > 25) {
+							num = j+key;
+							num -= 26;
+							
+						}else {
+							num += key;
+						}
+						isLetter = true;
+						cipher += alphabet[num];
+					}else if (letter.equals(alphabet[j].toUpperCase())){
+						if (j+key > 25) {
+							num = j+key;
+							num -= 26;
+						}else {
+							num += key;
+						}
+						isLetter = true;
+						cipher += alphabet[num].toUpperCase();
+					}
+				}
+				if(!isLetter) {
+					cipher += letter;
+				}
+			}
+			return cipher;
 		}
 
 	}
@@ -485,8 +519,26 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		if(i == 0) {
+			throw new IllegalArgumentException();
+		}
+		int j;
+		int num = 1;
+		int count = 0;
+		
+		while (count < i) {
+			num++;
+			for(j = 2 ; j <= num; j++) {
+				if (num%j == 0) {
+					break;
+				}
+			}
+			if(j == num) {
+				count++;
+			}
+		}
+		
+		return num;
 	}
 
 	/**
@@ -522,8 +574,27 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			string = string.toLowerCase();
+			String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3"};
+			String[] backwards= {"z","y","x","w","v","u","t","s","r","q","p","o","n","m","l","k","j","i","h","g","f","e","d","c","b","a","1","2","3"};
+			String coded = "";
+			int count = 0;
+			
+			for(int i = 0; i < string.length(); i++) {
+				for(int j = 0; j < alphabet.length; j++) {
+					String letter = ""+string.charAt(i);
+					if(letter.equals(alphabet[j])) {
+						coded += backwards[j];
+						count++;
+					}
+				}
+				if (count > 4) {
+					coded += " ";
+					count = 0;
+				}
+			}
+			
+			return coded;
 		}
 
 		/**
