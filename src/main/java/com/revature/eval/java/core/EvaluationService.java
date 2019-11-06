@@ -588,7 +588,7 @@ public class EvaluationService {
 						count++;
 					}
 				}
-				if (count > 4) {
+				if (count > 4 && i < string.length()-2) {
 					coded += " ";
 					count = 0;
 				}
@@ -604,8 +604,22 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String decode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			string = string.toLowerCase();
+			String[] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3"};
+			String[] backwards= {"z","y","x","w","v","u","t","s","r","q","p","o","n","m","l","k","j","i","h","g","f","e","d","c","b","a","1","2","3"};
+			String decoded = "";
+			int count = 0;
+			
+			for(int i = 0; i < string.length(); i++) {
+				for(int j = 0; j < alphabet.length; j++) {
+					String letter = ""+string.charAt(i);
+					if(letter.equals(alphabet[j])) {
+						decoded += backwards[j];
+						count++;
+					}
+				}
+			}
+			return decoded;
 		}
 	}
 
