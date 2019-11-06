@@ -646,8 +646,32 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isValidIsbn(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		boolean valid = false;
+		String test = "";
+		int count = 0;
+		int math = 0;
+		int[] numbers = new int[10];
+		
+		for(int i = 0; i < string.length(); i++) {
+			String snum = "" + string.charAt(i);
+			if (snum.equals("0") || snum.equals("1") || snum.equals("2") || snum.equals("3") || snum.equals("4") || snum.equals("5") || snum.equals("6") || snum.equals("7") || snum.equals("8") || snum.equals("9")){
+				int num = Integer.parseInt(snum);
+				numbers[count] = num;
+				count++;
+				test += snum;
+			}
+		}
+		if (string.charAt(12) == 'X') {
+			test += "X";
+			numbers[count] = 10;
+		}
+		
+		math = (numbers[0] * 10 + numbers[1] * 9 + numbers[2] * 8 + numbers[3] * 7 + numbers[4] * 6 + numbers[5] * 5 + numbers[6] * 4 + numbers[7] * 3 + numbers[8] * 2 + numbers[9] * 1);
+		
+		if(math % 11 == 0) {
+			valid = true;
+		}
+		return valid;
 	}
 
 	/**
