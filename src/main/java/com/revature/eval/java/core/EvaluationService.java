@@ -730,8 +730,24 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		int total = 0;
+		List<Integer> unique = new ArrayList();
+		
+		for (int k = 0; k < set.length; k++) {
+			int num = set[k];
+			int multiple = 0;
+			for (int j = 1; j < i; j++) {
+				multiple = num * j;
+				if (multiple < i) {
+					if (!unique.contains(multiple)) {
+						total += multiple;
+						unique.add(multiple);
+					}
+				}
+			}
+		}
+		
+		return total;
 	}
 
 	/**
@@ -771,8 +787,35 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isLuhnValid(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		boolean output = false;
+		int count = 0;
+		if(string.length() < 2) {
+			return false;
+		}
+		List<Integer> num = new ArrayList();
+		for (char c : string.toCharArray()) {
+			if (Character.isDigit(c)) {
+				num.add(Character.getNumericValue(c));
+			}else if(c != ' '){
+				return false;
+			}
+		}
+		for (int i = num.size()-1; i > -1; i--) {
+			count += num.get(i);
+			int test = 0;
+			if (i > 0) {
+				test = num.get(i-1) * 2;
+			}
+			if (test > 9) {
+				test -= 9;
+			}
+			count += test;
+			i--;
+		}
+		if (count%10 == 0) {
+			output = true;
+		}
+		return output;
 	}
 
 	/**
