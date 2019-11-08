@@ -291,8 +291,24 @@ public class EvaluationService {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
-			return 0;
+			String temp = t.toString();
+			int input = Integer.valueOf(temp);
+			int left = 0;
+			int right = sortedList.size()-1;
+			
+			while(left <= right) {
+				int middle = left + (right - left) /2;
+				String middleStr = sortedList.get(middle).toString();
+				if(Integer.valueOf(middleStr) == input) {
+					return middle;
+				}
+				if(Integer.valueOf(middleStr) < input) {
+					left = middle + 1;
+				}else {
+					right = middle - 1;
+				}	
+			}
+			return -1;
 		}
 
 		public BinarySearch(List<T> sortedList) {
