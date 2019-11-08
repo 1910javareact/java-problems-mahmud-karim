@@ -41,7 +41,7 @@ public class EvaluationService {
 		acronym += phrase.charAt(0);
 		
 		for(int i = 0; i < phrase.length(); i++) {
-			if(phrase.charAt(i) == ' ') {
+			if(phrase.charAt(i) == ' ' || phrase.charAt(i) == '-') {
 				acronym += phrase.charAt(i+1);
 			}
 		}
